@@ -63,7 +63,7 @@ public class AIMovementScript : MonoBehaviour
             steer = arriveComponent.getSteering(steer);
 
             arriveComponent.character.integrate(steer, duration);
-            arriveComponent.character.setOrientationFromVelocity(steer.linear);
+            // arriveComponent.character.setOrientationFromVelocity(steer.linear);
             transform.position = arriveComponent.character.position;
             angle = arriveComponent.character.orientation;
         }

@@ -35,6 +35,7 @@ public class KinematicArrive : TargetedKinematicMovement
         // if there is no direction, do nothing
         if (output.linear.sqrMagnitude < radius * radius)
         {
+            character.orientation = Mathf.Atan2(output.linear.y, output.linear.x);
             output.linear = Vector3.zero;
         }
         else
@@ -48,6 +49,7 @@ public class KinematicArrive : TargetedKinematicMovement
                 output.linear.Normalize();
                 output.linear *= maxSpeed;
             }
+            character.orientation = Mathf.Atan2(output.linear.y, output.linear.x);
         }
 
         return output;
