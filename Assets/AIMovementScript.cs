@@ -9,7 +9,6 @@ public class AIMovementScript : MonoBehaviour
     public KinematicSeek seekComponent;
     public KinematicFlee fleeComponent;
     public KinematicArrive arriveComponent;
-    private static float M_PI_180 = Mathf.PI / 180.0f;
     public float MAX_DISTANCE_BEFORE_FIRING;
 
     // Start is called before the first frame update
@@ -45,6 +44,8 @@ public class AIMovementScript : MonoBehaviour
 
             seekComponent.character.integrate(steer, duration);
             seekComponent.character.setOrientationFromVelocity(steer.linear);
+            transform.position = seekComponent.character.position;
+            angle = seekComponent.character.orientation;
         }
         else if (fleeComponent != null)
         {
@@ -53,6 +54,8 @@ public class AIMovementScript : MonoBehaviour
 
             fleeComponent.character.integrate(steer, duration);
             fleeComponent.character.setOrientationFromVelocity(steer.linear);
+            transform.position = fleeComponent.character.position;
+            angle = fleeComponent.character.orientation;
         }
         else if (arriveComponent != null)
         {
@@ -61,25 +64,11 @@ public class AIMovementScript : MonoBehaviour
 
             arriveComponent.character.integrate(steer, duration);
             arriveComponent.character.setOrientationFromVelocity(steer.linear);
-        }
-
-        if (seekComponent != null)
-        {
-            transform.position = seekComponent.character.position;
-            angle = seekComponent.character.orientation;
-        }
-        else if (fleeComponent != null)
-        {
-            transform.position = fleeComponent.character.position;
-            angle = fleeComponent.character.orientation;
-        }
-        else if (arriveComponent != null)
-        {
             transform.position = arriveComponent.character.position;
             angle = arriveComponent.character.orientation;
         }
 
-        angle *= M_PI_180 * Mathf.Rad2Deg;
+        angle *= Mathf.Rad2Deg;
 
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }

@@ -107,7 +107,7 @@ public class Location : MonoBehaviour
     {
         if (velocity.sqrMagnitude > 0)
         {
-            orientation = Mathf.Atan2(velocity.x, velocity.z);
+            orientation = Mathf.Atan2(velocity.y, velocity.x);
         }
     }
 
