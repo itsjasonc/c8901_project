@@ -671,6 +671,23 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 653071354}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &929913615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 929913614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cd2b9dfe451c6d469ce3d399c34bf9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  character: {fileID: 0}
+  maxSpeed: 3
+  target: {x: 0, y: 0, z: 0}
+  timeToTarget: 2
+  radius: 5
 --- !u!114 &929913621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -703,23 +720,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0, z: 0}
   orientation: 0
---- !u!114 &929913624
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 929913614}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4cd2b9dfe451c6d469ce3d399c34bf9d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  character: {fileID: 0}
-  maxSpeed: 3
-  target: {x: 0, y: 0, z: 0}
-  timeToTarget: 0.25
-  radius: 9
 --- !u!1 &945966264
 GameObject:
   m_ObjectHideFlags: 0
