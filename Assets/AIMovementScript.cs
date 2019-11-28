@@ -9,7 +9,11 @@ public class AIMovementScript : MonoBehaviour
     public KinematicSeek seekComponent;
     public KinematicFlee fleeComponent;
     public KinematicArrive arriveComponent;
-    public float MAX_DISTANCE_BEFORE_FIRING;
+
+    public GameObject projectile;
+    public float timeLeftBeforeFiring = 50.0f;
+    public float lastFired = 0.0f;
+    public float PROJECTILE_SPEED = 10.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -27,12 +31,6 @@ public class AIMovementScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-#if DEBUG
-        heading.x = Mathf.Cos(transform.rotation.eulerAngles.z * Mathf.Deg2Rad);
-        heading.y = Mathf.Sin(transform.rotation.eulerAngles.z * Mathf.Deg2Rad);
-        Vector3 headingLine = new Vector3(heading.x, heading.y, 0);
-        Debug.DrawLine(transform.position, transform.position + (headingLine * 2), Color.red);
-#endif
         float duration = Time.deltaTime;
         SteeringOutput steer = new SteeringOutput();
         float angle = 0.0f;
@@ -71,5 +69,23 @@ public class AIMovementScript : MonoBehaviour
         angle *= Mathf.Rad2Deg;
 
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+#if DEBUG
+        heading.x = Mathf.Cos(transform.rotation.eulerAngles.z * Mathf.Deg2Rad);
+        heading.y = Mathf.Sin(transform.rotation.eulerAngles.z * Mathf.Deg2Rad);
+        Vector3 headingLine = new Vector3(heading.x, heading.y, 0);
+        Debug.DrawLine(transform.position, transform.position + (headingLine * 2), Color.red);
+#endif
+        if (lastFired > 0)
+        {
+            lastFired -= Time.deltaTime * 100;
+        }
+
+        if (lastFired <= 0 && steer.linear.sqrMagnitude <= 0)
+        {
+            GameObject bullet = Instantiate(projectile, transform.position + (heading * 1.5f), transform.rotation);
+            bullet.GetComponent<Rigidbody2D>().AddForce(heading * PROJECTILE_SPEED, ForceMode2D.Impulse);
+            lastFired = timeLeftBeforeFiring;
+        }
     }
 }

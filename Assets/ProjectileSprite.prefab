@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 5248695944490533007}
   - component: {fileID: 5248695944490533008}
   - component: {fileID: 5248695944490533009}
-  - component: {fileID: 5248695944490533011}
-  m_Layer: 0
+  - component: {fileID: 50074314269466704}
+  m_Layer: 9
   m_Name: ProjectileSprite
   m_TagString: Projectile
   m_Icon: {fileID: 0}
@@ -122,7 +122,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!50 &5248695944490533011
+--- !u!50 &50074314269466704
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0

@@ -19,6 +19,7 @@ public class ProjectileScript : MonoBehaviour
         objectWidth = transform.GetComponent<SpriteRenderer>().bounds.size.x / 2;
         objectHeight = transform.GetComponent<SpriteRenderer>().bounds.size.y / 2;
         timeLeft = TIME_TO_DEATH;
+        Physics2D.IgnoreLayerCollision(gameObject.layer, gameObject.layer);
     }
 
     // Update is called once per frame
@@ -47,13 +48,9 @@ public class ProjectileScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (!collision.gameObject.tag.Equals("Projectile"))
+        if (collision.gameObject.tag != "Projectile")
         {
             Object.Destroy(gameObject);
-        }
-        else
-        {
-            Physics2D.IgnoreCollision(collision.collider, collider);
         }
     }
 }

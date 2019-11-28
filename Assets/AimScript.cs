@@ -31,7 +31,7 @@ public class AimScript : MonoBehaviour
             lastFired -= Time.deltaTime * 100;
         }
 
-        if (lastFired <= 0 && Input.GetAxisRaw("Fire1") > 0)
+        if (lastFired <= 0 && (Input.GetAxisRaw("Fire1") > 0 || Input.GetAxisRaw("Fire1") < 0))
         {
             GameObject bullet = Instantiate(projectile, transform.position + (direction3D * 1.5f), transform.rotation);
             bullet.GetComponent<Rigidbody2D>().AddForce(direction * PROJECTILE_SPEED, ForceMode2D.Impulse);
