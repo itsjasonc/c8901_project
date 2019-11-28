@@ -7,19 +7,21 @@ using UnityEngine.SceneManagement;
 public class EndGameScript : MonoBehaviour
 {
     public GameObject winner;
+    private Text winnerText;
     public GameObject button;
 
     // Start is called before the first frame update
     void Start()
     {
         int win = PlayerPrefs.GetInt("winner");
+        winnerText = winner.GetComponent<Text>();
         if (win == 1)
         {
-            winner.GetComponent<Text>().text = "Player wins";
+            winnerText.text = "Player wins";
         }
         else
         {
-            winner.GetComponent<Text>().text = "Computer wins";
+            winnerText.text = "Computer wins";
         }
         Button btn = button.GetComponent<Button>();
         btn.onClick.AddListener(TaskOnClick);

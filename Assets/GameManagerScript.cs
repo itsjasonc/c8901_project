@@ -28,7 +28,7 @@ public class GameManagerScript : MonoBehaviour
 
             if (enemy.GetComponent<PlayerScript>().num_wins >= 2)
             {
-                PlayerPrefs.SetInt("winner", 1);
+                PlayerPrefs.SetInt("winner", 0);
                 SceneManager.LoadScene("EndGame");
             }
             else
@@ -42,7 +42,7 @@ public class GameManagerScript : MonoBehaviour
 
             if (player.GetComponent<PlayerScript>().num_wins >= 2)
             {
-                PlayerPrefs.SetInt("winner", 0);
+                PlayerPrefs.SetInt("winner", 1);
                 SceneManager.LoadScene("EndGame");
             }
             else
