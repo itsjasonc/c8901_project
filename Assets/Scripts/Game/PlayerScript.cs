@@ -7,6 +7,7 @@ public class PlayerScript : MonoBehaviour
     public int num_wins = 0;
     public int MAX_HEALTH = 10;
     public int health = 10;
+    public int LOW_HEALTH = 3;
     public Rigidbody2D rb;
 
     // Start is called before the first frame update
@@ -25,7 +26,7 @@ public class PlayerScript : MonoBehaviour
         if (collision.gameObject.tag.Equals("Projectile"))
         {
             health--;
-            Debug.Log(health);
+            rb.velocity = Vector2.zero;
             GameObject.Find("GameManager").GetComponent<GameManagerScript>().UpdateHealth();
         }
         else if (collision.gameObject.tag.Equals("Health"))
