@@ -5,5 +5,5 @@ using UnityEngine;
 public class TargetedDecisionTreeAction : DecisionTreeAction
 {
     public GameObject character;
-    public GameObject target;
+    public Vector3 targetPosition;
 }

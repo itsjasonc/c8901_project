@@ -8,21 +8,18 @@ public class ArrivePlayerAction : TargetedDecisionTreeAction
 
     public override void doSomething()
     {
-        if (target != null)
-        {
-            float duration = Time.deltaTime;
-            SteeringOutput steer = new SteeringOutput();
+        float duration = Time.deltaTime;
+        SteeringOutput steer = new SteeringOutput();
 
-            steer = kinematicComponent.getSteering(steer);
-            kinematicComponent.target = target.transform.position;
+        steer = kinematicComponent.getSteering(steer);
+        kinematicComponent.target = targetPosition;
 
-            kinematicComponent.character.integrate(steer, duration);
-            kinematicComponent.character.setOrientationFromVelocity(steer.linear);
+        kinematicComponent.character.integrate(steer, duration);
+        kinematicComponent.character.setOrientationFromVelocity(steer.linear);
 
-            character.transform.position = kinematicComponent.character.position;
-            float angle = kinematicComponent.character.orientation * Mathf.Rad2Deg;
+        character.transform.position = kinematicComponent.character.position;
+        float angle = kinematicComponent.character.orientation * Mathf.Rad2Deg;
 
-            character.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        }
+        character.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
 }

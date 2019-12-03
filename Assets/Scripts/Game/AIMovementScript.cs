@@ -62,19 +62,16 @@ public class AIMovementScript : MonoBehaviour
         avoidPlayerAction = new AvoidPlayerAction();
         avoidProjectileAction = new AvoidProjectileAction();
 
-        avoidProjectileAction.kinematicComponent = sidestepComponent;
+        avoidProjectileAction.kinematicComponent = seekComponent;
         avoidProjectileAction.character = gameObject;
         arrivePlayerAction.kinematicComponent = arriveComponent;
         arrivePlayerAction.character = gameObject;
-        arrivePlayerAction.target = target;
         seekHealthAction.kinematicComponent = seekComponent;
         seekHealthAction.character = gameObject;
         avoidPlayerAction.kinematicComponent = fleeComponent;
         avoidPlayerAction.character = gameObject;
-        avoidPlayerAction.target = target;
         shootPlayerAction.kinematicComponent = arriveComponent;
         shootPlayerAction.character = gameObject;
-        shootPlayerAction.target = target;
 
         lowHealthTargetNearby.character = gameObject;
         lowHealthTargetNearby.target = target;
@@ -118,6 +115,10 @@ public class AIMovementScript : MonoBehaviour
 
     private void FixedUpdate()
     {
+        shootPlayerAction.targetPosition = target.transform.position;
+        arrivePlayerAction.targetPosition = target.transform.position;
+        avoidPlayerAction.targetPosition = target.transform.position;
+
         float duration = Time.deltaTime;
         SteeringOutput steer = new SteeringOutput();
         float angle = 0.0f;
@@ -128,15 +129,15 @@ public class AIMovementScript : MonoBehaviour
 
         if (healthPacks.Length > 0)
         {
-            seekHealthAction.target = healthPacks[0];
+            seekHealthAction.targetPosition = healthPacks[0].transform.position;
             foreach (var hp in healthPacks)
             {
-                float currentDistance = (seekHealthAction.target.transform.position - transform.position).magnitude;
+                float currentDistance = (seekHealthAction.targetPosition- transform.position).magnitude;
                 float indexDistance = (hp.transform.position - transform.position).magnitude;
 
                 if (indexDistance < currentDistance)
                 {
-                    seekHealthAction.target = hp;
+                    seekHealthAction.targetPosition = hp.transform.position;
                 }
             }
         }

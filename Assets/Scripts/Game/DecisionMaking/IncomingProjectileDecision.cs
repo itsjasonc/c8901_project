@@ -34,7 +34,9 @@ public class IncomingProjectileDecision : Decision
                 {
                     if (result.collider.gameObject.name == character.name)
                     {
-                        character.GetComponent<AIMovementScript>().avoidProjectileAction.target = projectile;
+                        Vector2 perpendicular = Vector2.Perpendicular(rb.velocity);
+                        Vector3 perp3 = perpendicular;
+                        character.GetComponent<AIMovementScript>().avoidProjectileAction.targetPosition = character.transform.position + (perp3 * 5);
                         return true;
                     }
                 }
