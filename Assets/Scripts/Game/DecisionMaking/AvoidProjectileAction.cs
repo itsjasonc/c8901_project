@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class AvoidProjectileAction : TargetedDecisionTreeAction
 {
-    public KinematicFlee kinematicComponent;
+    public KinematicSidestep kinematicComponent;
 
     public override void doSomething()
     {

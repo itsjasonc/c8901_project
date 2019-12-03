@@ -14,6 +14,7 @@ public class AIMovementScript : MonoBehaviour
     public KinematicSeek seekComponent;
     public KinematicFlee fleeComponent;
     public KinematicArrive arriveComponent;
+    public KinematicSidestep sidestepComponent;
     public PlayerScript playerScript;
 
     public GameObject projectile;
@@ -44,6 +45,7 @@ public class AIMovementScript : MonoBehaviour
         seekComponent = GetComponent<KinematicSeek>();
         fleeComponent = GetComponent<KinematicFlee>();
         arriveComponent = GetComponent<KinematicArrive>();
+        sidestepComponent = GetComponent<KinematicSidestep>();
         playerScript = GetComponent<PlayerScript>();
 
         lowHealthTargetNearby = new TargetNearbyDecision(5.0f);
@@ -60,7 +62,7 @@ public class AIMovementScript : MonoBehaviour
         avoidPlayerAction = new AvoidPlayerAction();
         avoidProjectileAction = new AvoidProjectileAction();
 
-        avoidProjectileAction.kinematicComponent = fleeComponent;
+        avoidProjectileAction.kinematicComponent = sidestepComponent;
         avoidProjectileAction.character = gameObject;
         arrivePlayerAction.kinematicComponent = arriveComponent;
         arrivePlayerAction.character = gameObject;

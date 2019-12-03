@@ -21,15 +21,8 @@ public class MovementScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (aimComponent.lastFired <= 0)
-        {
-            Vector2 movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-            moveVelocity = movement.normalized * speed;
-        }
-        else
-        {
-            moveVelocity = Vector2.zero;
-        }
+        Vector2 movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        moveVelocity = movement.normalized * speed;
     }
 
     private void FixedUpdate()
