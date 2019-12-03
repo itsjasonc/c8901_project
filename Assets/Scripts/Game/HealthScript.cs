@@ -26,6 +26,6 @@ public class HealthScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        transform.position = new Vector2(Random.Range(0, screenBounds.x), Random.Range(0, screenBounds.y));
+        transform.position = new Vector2(Random.Range(screenBounds.x + objectWidth, screenBounds.x * -1 - objectWidth), Random.Range(screenBounds.y + objectHeight, screenBounds.y * -1 + objectHeight * 3));
     }
 }
